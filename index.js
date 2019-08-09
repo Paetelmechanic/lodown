@@ -5,8 +5,8 @@
  *identity: Designed to take a value and return that same value to check its 
  * identity.
  * 
- * @param {value} data: data being passed to function to identify 
- * @return  Returns value input
+ * @param {Value} data: data being passed to function to identify 
+ * @return  {Value} data: returns value input
  */
 function identity(value) {
     return value;
@@ -15,9 +15,10 @@ function identity(value) {
 
 
 /**
- *typeOf: Designed to take a value and return its type
+ *typeOf: Designed to take a value and return its type as a string.
  * 
- * @param {value} data: data being used to generate a type
+ * @param {Value} data: data being used to generate a type
+ * @return {String} a string representing the type of data that value is.
  */
 function typeOf(value) {
     if (Array.isArray(value)) {
@@ -47,8 +48,9 @@ function typeOf(value) {
  * array is returned. If no number is given, or number is not a number, the 
  * first element in the array is returned.
  * 
- * @param {array} collection: collection being looped over
- * @param {number} number: number of elements to be returned in a new array
+ * @param {Array} collection: collection being looped over
+ * @param {Number}: number of elements to be returned in a new array
+ * @return {Array} collection: returns the first {number} of elements in a new array
  */
 function first(array, number) {
     if (!Array.isArray(array) || number < 0) {
@@ -69,8 +71,9 @@ function first(array, number) {
  * If there is no number, or {number} is not a number, the last element in the
  * array is returned.
  * 
- * @param {array} collection: collection to be looped over
- * @param {number} number: number of elements to be returnd in new array
+ * @param {Array} collection: collection to be looped over
+ * @param {Number} number: number of elements to be returnd in new array
+ * @return  {Array} collection: returns the last {number} of elements in a new array
  */
 function last(array, number) {
     if(!Array.isArray(array)) {
@@ -90,8 +93,10 @@ function last(array, number) {
  *indexOf: Designed to loop over an array and return the index of a value if it
  * is found in that array
  * 
- * @param {array} collection: collection designed to be looped over
- * @param {value} data: data to be checked against in order to find an index
+ * @param {Array} collection: collection designed to be looped over
+ * @param {Value} data: data to be checked against in order to find an index
+ * @return {Number} datatype: returns first index of the value passed to the 
+ * //function. If the value is not found, -1 is returned.
  */
 function indexOf(array, value) {
     for (var i = 0; i < array.length; i++) {
@@ -103,10 +108,12 @@ function indexOf(array, value) {
 
 /**
  *contains: Designed to loop an array, and look for a value and return a boolean
- * if that value is foudn therein
+ * if that value is found therein
  * 
- * @param {array} collection: collection to be looped over
- * @param {value} data: data to be checked against to find a boolean
+ * @param {Array} collection: collection to be looped over
+ * @param {Value} data: data to be checked against to find a boolean
+ * @return {Boolean} returns a boolean of true or false if the value exists in the array
+ * or not
  */
 function contains(array, value) {
     for (let i = 0; i < array.length; i++) {
@@ -125,6 +132,7 @@ function contains(array, value) {
  * @param {Array or Object} collection: The collection over which to iterate.
  * @param {Function} action: The Function to be applied to each value in the 
  * collection
+ * @return TRICK Question. Each doesn't return anything.
  */
 function each(collection, func) {
     if (Array.isArray(collection)) {
@@ -144,10 +152,12 @@ function each(collection, func) {
 
 
 /**
- *unique: Designed to loop an array, and if an index of that element is not 
- * found in the new array, the value is pushed into the new array
+ *unique: Designed to iterate over an array, and return a new array with all the
+ * duplicates removed. 
  * 
- * @param {array} collection: collection over which to iterate
+ * @param {Array} collection: collection over which to iterate
+ * @return {Array} collection: returns a new array of unique elements with no
+ * duplicates
  */
 function unique(array) {
   let newArr = [];
@@ -165,7 +175,9 @@ function unique(array) {
  * it resolves to true then the element is pushed to a new array
  * 
  * @param {Array or Object} collection: collection designed to be looped over
- * @param {test} action: function applies to each value in the loop 
+ * @param {Test} action: function applies to each value in the loop 
+ * @return {Array} collection: returns a new array of filtered elements that 
+ * pass the test given to each element
  */
 function filter(collection, test) {
    let newArr = [];
@@ -183,7 +195,9 @@ function filter(collection, test) {
  * return all elements that resolve to false in a new array
  * 
  * @param {Array or Object} collection: collection to be iterated over
- * @param {action} action: function to be passed as a test to the collection 
+ * @param {Action} action: function to be passed as a test to the collection 
+ * @return {Array} collection: returns an array of elements that do not pass the
+ * test given to each element/the rejected elements
  */
 function reject(collection, action) {
     let newArr = [];
@@ -202,8 +216,11 @@ function reject(collection, action) {
  * pass to one array, and those that do not to another array
  * 
  * @param {Array or Object} collection: collection to be iterated over
- * @param {action} action: function that acts as a test to discern which array 
+ * @param {Action} action: function that acts as a test to discern which array 
  * to place the element
+ * @return {Array} collection: returns a new array, with two sub arrays, one 
+ * containing all the elements that pass a test, and the other containing all 
+ * the elements that failed to pass
  */
 function partition (collection, action) {
   let mainArray = [[],[]];
@@ -219,12 +236,14 @@ function partition (collection, action) {
 
 
 /**
- *map: Designed iterate over a collection, applying some action to each element
- * and push each modified element into a new array
+ *map: Designed iterate over a collection, and create a new array with the results
+ * of calling a function on each element in the original array.
  * 
  * @param {Object or Array} collection: collection to be iterated over
- * @param {action} action: function passed to each element in order to modify
+ * @param {Action} action: function passed to each element in order to modify
  * what will be pushed into the new array
+ * @return {Array} collection: returns a new array with the results of passing
+ * each element to a function
  */
 function map (collection, action) {
  let newArr = [];
@@ -240,8 +259,10 @@ function map (collection, action) {
  * from each element into a new array and return the new array
  * 
  * @param {Object or Array} collection: collection to be iterated over
- * @param {prop] property: property on the object to be accessed in order to 
+ * @param {Prop} property: property on the object to be accessed in order to 
  * attain a value to be pushed into new array
+ * @return {Array} collection: returns an array with the values of each element
+ * at a specified property
  */
 function pluck(collection, prop) {
     let newArr = [];
@@ -260,8 +281,10 @@ function pluck(collection, prop) {
  * not
  * 
  * @param {Object or Array} collection: collection to be iterated over
- * @param {action} action: function designed to test each element being 
+ * @param {Action} action: function designed to test each element being 
  * iterated over
+ * @return {Boolean}: returns a true if each element passes a test, however if
+ * each element does not pass then false is returned.
  */
 function every (collection, action) {
     if (action === undefined) {
@@ -296,8 +319,10 @@ function every (collection, action) {
  * true will be returned. Conversely, if it does not, false will be returned.
  * 
  * @param {Object or Array} collection: collection to be iterated over
- * @param {action} action: function to be passed to each element to return a 
+ * @param {Action} action: function to be passed to each element to return a 
  * boolean
+ * @return {Boolean}: returns true if even one element passes a test, however
+ * if no elements pass the test then false is returned
  */
  function some(collection, action) {
     if (action === undefined) {
@@ -333,6 +358,8 @@ function every (collection, action) {
  * @param {action} action: function designed to modify each element being looped
  * @param {seed} data: placeholder designed to hold modified value after each
  * iteration
+ * @return {any data type}: returns any data type specified by the user after
+ * passing a function to each element and accruing the result in an accumulator
  */
 function reduce(array, action, seed) {
     each(array, (element, i, array) => {
@@ -348,7 +375,7 @@ function reduce(array, action, seed) {
 
 
 /**
- *extend: Deisnged to copy the values of one or more sourch objects onto a 
+ *extend: Designed to copy the values of one or more source objects onto a 
  * target object
  * 
  * @param {obj} collection: target collection onto which values will be copied
@@ -356,6 +383,7 @@ function reduce(array, action, seed) {
  * @param {...callMeWhatever} collection: source collection set off with rest
  * operator to tell computer that as many args can be passed to the function as
  * needed
+ * @return {Object} collection: returns object values copied from sources
  */
 function extend(obj, obj2, ...callMeWhatever) {
   return Object.assign(obj, obj2, ...callMeWhatever);  
